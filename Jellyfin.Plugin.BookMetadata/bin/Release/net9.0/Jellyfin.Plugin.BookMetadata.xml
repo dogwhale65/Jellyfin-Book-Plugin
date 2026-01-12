@@ -1,0 +1,1140 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Jellyfin.Plugin.BookMetadata</name>
+    </assembly>
+    <members>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Configuration.PluginConfiguration">
+            <summary>
+            Plugin configuration for Book Metadata.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Configuration.PluginConfiguration.GoogleBooksPriority">
+            <summary>
+            Gets or sets the Google Books priority (1 = highest).
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Configuration.PluginConfiguration.OpenLibraryPriority">
+            <summary>
+            Gets or sets the Open Library priority (1 = highest).
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Configuration.PluginConfiguration.EnableGoogleBooks">
+            <summary>
+            Gets or sets a value indicating whether Google Books is enabled.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Configuration.PluginConfiguration.EnableOpenLibrary">
+            <summary>
+            Gets or sets a value indicating whether Open Library is enabled.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Configuration.PluginConfiguration.EnableISBNExtraction">
+            <summary>
+            Gets or sets a value indicating whether ISBN extraction from filenames is enabled.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Configuration.PluginConfiguration.EnableFuzzyMatching">
+            <summary>
+            Gets or sets a value indicating whether fuzzy matching is enabled.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Configuration.PluginConfiguration.EnableEmbeddedMetadata">
+            <summary>
+            Gets or sets a value indicating whether embedded metadata reading is enabled.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Configuration.PluginConfiguration.GoogleBooksRateLimit">
+            <summary>
+            Gets or sets the Google Books rate limit (requests per minute).
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Configuration.PluginConfiguration.OpenLibraryRateLimit">
+            <summary>
+            Gets or sets the Open Library rate limit (requests per minute).
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Configuration.PluginConfiguration.CacheDuration">
+            <summary>
+            Gets or sets the cache duration in hours.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Configuration.PluginConfiguration.FuzzyMatchThreshold">
+            <summary>
+            Gets or sets the fuzzy match threshold (0-100).
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Configuration.PluginConfiguration.EnableDebugLogging">
+            <summary>
+            Gets or sets a value indicating whether debug logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Configuration.PluginConfiguration.PreferredLanguage">
+            <summary>
+            Gets or sets the preferred language code (e.g., "en", "es", "fr").
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Plugin">
+            <summary>
+            The main plugin class for Book Metadata.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Plugin.#ctor(MediaBrowser.Common.Configuration.IApplicationPaths,MediaBrowser.Model.Serialization.IXmlSerializer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.BookMetadata.Plugin"/> class.
+            </summary>
+            <param name="applicationPaths">Instance of the <see cref="T:MediaBrowser.Common.Configuration.IApplicationPaths"/> interface.</param>
+            <param name="xmlSerializer">Instance of the <see cref="T:MediaBrowser.Model.Serialization.IXmlSerializer"/> interface.</param>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Plugin.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Plugin.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Plugin.Instance">
+            <summary>
+            Gets the current plugin instance.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Plugin.GetPages">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.GoogleBooksExternalId">
+            <summary>
+            Google Books external ID provider.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.GoogleBooksExternalId.ProviderName">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.GoogleBooksExternalId.Key">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.GoogleBooksExternalId.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.GoogleBooksExternalId.UrlFormatString">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.GoogleBooksExternalId.Supports(MediaBrowser.Model.Entities.IHasProviderIds)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.ISBNExternalId">
+            <summary>
+            ISBN external ID provider.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.ISBNExternalId.ProviderName">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.ISBNExternalId.Key">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.ISBNExternalId.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.ISBNExternalId.UrlFormatString">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.ISBNExternalId.Supports(MediaBrowser.Model.Entities.IHasProviderIds)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.OpenLibraryExternalId">
+            <summary>
+            Open Library external ID provider.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.OpenLibraryExternalId.ProviderName">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.OpenLibraryExternalId.Key">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.OpenLibraryExternalId.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.OpenLibraryExternalId.UrlFormatString">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.ExternalIds.OpenLibraryExternalId.Supports(MediaBrowser.Model.Entities.IHasProviderIds)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksClient">
+            <summary>
+            HTTP client for Google Books API.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksClient.#ctor(System.Net.Http.IHttpClientFactory,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksClient"/> class.
+            </summary>
+            <param name="httpClientFactory">The HTTP client factory.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksClient.SearchByISBNAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Searches for books by ISBN.
+            </summary>
+            <param name="isbn">The ISBN to search for.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The Google Books API response.</returns>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksClient.SearchByTitleAuthorAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Searches for books by title and author.
+            </summary>
+            <param name="title">The title to search for.</param>
+            <param name="author">The author to search for.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The Google Books API response.</returns>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksClient.GetVolumeAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Gets a volume by ID.
+            </summary>
+            <param name="volumeId">The volume ID.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The volume.</returns>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksImageProvider">
+            <summary>
+            Google Books image provider.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksImageProvider.#ctor(Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksImageProvider},System.Net.Http.IHttpClientFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksImageProvider"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="httpClientFactory">The HTTP client factory.</param>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksImageProvider.Name">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksImageProvider.Supports(MediaBrowser.Controller.Entities.BaseItem)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksImageProvider.GetSupportedImages(MediaBrowser.Controller.Entities.BaseItem)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksImageProvider.GetImages(MediaBrowser.Controller.Entities.BaseItem,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksImageProvider.GetImageResponse(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksResponse">
+            <summary>
+            Google Books API response model.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksResponse.Kind">
+            <summary>
+            Gets or sets the kind of resource.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksResponse.TotalItems">
+            <summary>
+            Gets or sets the total items count.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksResponse.Items">
+            <summary>
+            Gets or sets the items.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolume">
+            <summary>
+            Google Books volume model.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolume.Id">
+            <summary>
+            Gets or sets the volume ID.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolume.VolumeInfo">
+            <summary>
+            Gets or sets the volume information.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolumeInfo">
+            <summary>
+            Google Books volume information model.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolumeInfo.Title">
+            <summary>
+            Gets or sets the title.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolumeInfo.Subtitle">
+            <summary>
+            Gets or sets the subtitle.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolumeInfo.Authors">
+            <summary>
+            Gets or sets the authors.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolumeInfo.Publisher">
+            <summary>
+            Gets or sets the publisher.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolumeInfo.PublishedDate">
+            <summary>
+            Gets or sets the published date.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolumeInfo.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolumeInfo.IndustryIdentifiers">
+            <summary>
+            Gets or sets the industry identifiers.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolumeInfo.PageCount">
+            <summary>
+            Gets or sets the page count.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolumeInfo.Categories">
+            <summary>
+            Gets or sets the categories.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolumeInfo.AverageRating">
+            <summary>
+            Gets or sets the average rating.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolumeInfo.RatingsCount">
+            <summary>
+            Gets or sets the ratings count.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolumeInfo.Language">
+            <summary>
+            Gets or sets the language.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksVolumeInfo.ImageLinks">
+            <summary>
+            Gets or sets the image links.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksIndustryIdentifier">
+            <summary>
+            Google Books industry identifier model.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksIndustryIdentifier.Type">
+            <summary>
+            Gets or sets the identifier type (e.g., "ISBN_10", "ISBN_13").
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksIndustryIdentifier.Identifier">
+            <summary>
+            Gets or sets the identifier value.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksImageLinks">
+            <summary>
+            Google Books image links model.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksImageLinks.SmallThumbnail">
+            <summary>
+            Gets or sets the small thumbnail URL.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksImageLinks.Thumbnail">
+            <summary>
+            Gets or sets the thumbnail URL.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksImageLinks.Small">
+            <summary>
+            Gets or sets the small URL.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksImageLinks.Medium">
+            <summary>
+            Gets or sets the medium URL.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksImageLinks.Large">
+            <summary>
+            Gets or sets the large URL.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksImageLinks.ExtraLarge">
+            <summary>
+            Gets or sets the extra large URL.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksProvider">
+            <summary>
+            Google Books metadata provider.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksProvider.#ctor(Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksProvider},System.Net.Http.IHttpClientFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksProvider"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="httpClientFactory">The HTTP client factory.</param>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksProvider.Name">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksProvider.GetSearchResults(MediaBrowser.Controller.Providers.BookInfo,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksProvider.GetMetadata(MediaBrowser.Controller.Providers.BookInfo,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.GoogleBooks.GoogleBooksProvider.GetImageResponse(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryClient">
+            <summary>
+            HTTP client for Open Library API.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryClient.#ctor(System.Net.Http.IHttpClientFactory,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryClient"/> class.
+            </summary>
+            <param name="httpClientFactory">The HTTP client factory.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryClient.SearchByISBNAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Searches for books by ISBN using the Books API.
+            </summary>
+            <param name="isbn">The ISBN to search for.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The Open Library Books API response.</returns>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryClient.SearchByTitleAuthorAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Searches for books by title and author using the Search API.
+            </summary>
+            <param name="title">The title to search for.</param>
+            <param name="author">The author to search for.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The Open Library Search API response.</returns>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryImageProvider">
+            <summary>
+            Open Library image provider.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryImageProvider.#ctor(Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryImageProvider},System.Net.Http.IHttpClientFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryImageProvider"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="httpClientFactory">The HTTP client factory.</param>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryImageProvider.Name">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryImageProvider.Supports(MediaBrowser.Controller.Entities.BaseItem)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryImageProvider.GetSupportedImages(MediaBrowser.Controller.Entities.BaseItem)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryImageProvider.GetImages(MediaBrowser.Controller.Entities.BaseItem,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryImageProvider.GetImageResponse(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchResponse">
+            <summary>
+            Open Library search response model.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchResponse.NumFound">
+            <summary>
+            Gets or sets the number of results found.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchResponse.Start">
+            <summary>
+            Gets or sets the starting offset.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchResponse.Docs">
+            <summary>
+            Gets or sets the documents.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchDoc">
+            <summary>
+            Open Library search document model.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchDoc.Key">
+            <summary>
+            Gets or sets the work key.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchDoc.Title">
+            <summary>
+            Gets or sets the title.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchDoc.Subtitle">
+            <summary>
+            Gets or sets the subtitle.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchDoc.AuthorName">
+            <summary>
+            Gets or sets the author names.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchDoc.FirstPublishYear">
+            <summary>
+            Gets or sets the first publish year.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchDoc.Isbn">
+            <summary>
+            Gets or sets the ISBNs.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchDoc.Publisher">
+            <summary>
+            Gets or sets the publisher names.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchDoc.Language">
+            <summary>
+            Gets or sets the languages.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchDoc.Subject">
+            <summary>
+            Gets or sets the subjects.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchDoc.CoverEditionKey">
+            <summary>
+            Gets or sets the cover edition key.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchDoc.CoverId">
+            <summary>
+            Gets or sets the cover IDs.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySearchDoc.EditionCount">
+            <summary>
+            Gets or sets the edition count.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryBooksResponse">
+            <summary>
+            Open Library Books API response model (bibkeys response).
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryBook">
+            <summary>
+            Open Library book model.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryBook.Url">
+            <summary>
+            Gets or sets the book URL.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryBook.Title">
+            <summary>
+            Gets or sets the title.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryBook.Subtitle">
+            <summary>
+            Gets or sets the subtitle.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryBook.Authors">
+            <summary>
+            Gets or sets the authors.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryBook.Publishers">
+            <summary>
+            Gets or sets the publishers.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryBook.PublishDate">
+            <summary>
+            Gets or sets the publish date.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryBook.Identifiers">
+            <summary>
+            Gets or sets the identifiers.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryBook.Subjects">
+            <summary>
+            Gets or sets the subjects.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryBook.Excerpts">
+            <summary>
+            Gets or sets the excerpts.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryBook.Cover">
+            <summary>
+            Gets or sets the cover image.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryBook.NumberOfPages">
+            <summary>
+            Gets or sets the number of pages.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryAuthor">
+            <summary>
+            Open Library author model.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryAuthor.Url">
+            <summary>
+            Gets or sets the author URL.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryAuthor.Name">
+            <summary>
+            Gets or sets the author name.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryPublisher">
+            <summary>
+            Open Library publisher model.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryPublisher.Name">
+            <summary>
+            Gets or sets the publisher name.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryIdentifiers">
+            <summary>
+            Open Library identifiers model.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryIdentifiers.Isbn10">
+            <summary>
+            Gets or sets the ISBN-10 list.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryIdentifiers.Isbn13">
+            <summary>
+            Gets or sets the ISBN-13 list.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryIdentifiers.OpenLibrary">
+            <summary>
+            Gets or sets the Open Library IDs.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryIdentifiers.Goodreads">
+            <summary>
+            Gets or sets the Goodreads IDs.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySubject">
+            <summary>
+            Open Library subject model.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySubject.Url">
+            <summary>
+            Gets or sets the subject URL.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibrarySubject.Name">
+            <summary>
+            Gets or sets the subject name.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryExcerpt">
+            <summary>
+            Open Library excerpt model.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryExcerpt.Text">
+            <summary>
+            Gets or sets the excerpt text.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryCover">
+            <summary>
+            Open Library cover model.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryCover.Small">
+            <summary>
+            Gets or sets the small cover URL.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryCover.Medium">
+            <summary>
+            Gets or sets the medium cover URL.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryCover.Large">
+            <summary>
+            Gets or sets the large cover URL.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryProvider">
+            <summary>
+            Open Library metadata provider.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryProvider.#ctor(Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryProvider},System.Net.Http.IHttpClientFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryProvider"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="httpClientFactory">The HTTP client factory.</param>
+        </member>
+        <member name="P:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryProvider.Name">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryProvider.GetSearchResults(MediaBrowser.Controller.Providers.BookInfo,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryProvider.GetMetadata(MediaBrowser.Controller.Providers.BookInfo,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Providers.OpenLibrary.OpenLibraryProvider.GetImageResponse(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Utils.FuzzyMatcher">
+            <summary>
+            Utility class for fuzzy matching book titles and authors.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.FuzzyMatcher.SpecialCharsPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[^\\w\\s]</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [^\w\s].<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.FuzzyMatcher.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.BookMetadata.Utils.FuzzyMatcher"/> class.
+            </summary>
+            <param name="threshold">The matching threshold (0-100).</param>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.FuzzyMatcher.IsMatch(System.String,System.String)">
+            <summary>
+            Determines if two strings match within the threshold.
+            </summary>
+            <param name="source">The source string.</param>
+            <param name="target">The target string.</param>
+            <returns>True if the strings match, false otherwise.</returns>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.FuzzyMatcher.GetMatchScore(System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Gets a match score for a search result.
+            </summary>
+            <param name="searchTitle">The search title.</param>
+            <param name="resultTitle">The result title.</param>
+            <param name="searchYear">The search year.</param>
+            <param name="resultYear">The result year.</param>
+            <returns>A match score from 0-100.</returns>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.FuzzyMatcher.GetMatchScore(System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Gets a match score including author information.
+            </summary>
+            <param name="searchTitle">The search title.</param>
+            <param name="resultTitle">The result title.</param>
+            <param name="searchAuthor">The search author.</param>
+            <param name="resultAuthor">The result author.</param>
+            <param name="searchYear">The search year.</param>
+            <param name="resultYear">The result year.</param>
+            <returns>A match score from 0-100.</returns>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.FuzzyMatcher.NormalizeForMatching(System.String)">
+            <summary>
+            Normalizes a string for matching.
+            </summary>
+            <param name="input">The input string.</param>
+            <returns>The normalized string.</returns>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Utils.ISBNExtractor">
+            <summary>
+            Utility class for extracting and validating ISBNs from filenames and metadata.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.ISBNExtractor.Isbn13Pattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(?:ISBN[-\\s]?13?[-:\\s]?)?(?&lt;isbn&gt;97[89][-\\s]?\\d{1,5}[-\\s]?\\d{1,7}[-\\s]?\\d{1,6}[-\\s]?\\d)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Optional (greedy).<br/>
+                ○ Match a character in the set [Ii].<br/>
+                ○ Match a character in the set [Ss].<br/>
+                ○ Match a character in the set [Bb].<br/>
+                ○ Match a character in the set [Nn].<br/>
+                ○ Match a character in the set [-\s] atomically, optionally.<br/>
+                ○ Match '1'.<br/>
+                ○ Match '3' greedily, optionally.<br/>
+                ○ Match a character in the set [-:\s] atomically, optionally.<br/>
+            ○ "isbn" capture group.<br/>
+                ○ Match the string "97".<br/>
+                ○ Match a character in the set [89].<br/>
+                ○ Match a character in the set [-\s] greedily, optionally.<br/>
+                ○ Match a Unicode digit greedily at least 1 and at most 5 times.<br/>
+                ○ Match a character in the set [-\s] greedily, optionally.<br/>
+                ○ Match a Unicode digit greedily at least 1 and at most 7 times.<br/>
+                ○ Match a character in the set [-\s] greedily, optionally.<br/>
+                ○ Match a Unicode digit greedily at least 1 and at most 6 times.<br/>
+                ○ Match a character in the set [-\s] greedily, optionally.<br/>
+                ○ Match a Unicode digit.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.ISBNExtractor.Isbn10Pattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(?:ISBN[-\\s]?10?[-:\\s]?)?(?&lt;isbn&gt;\\d{1,5}[-\\s]?\\d{1,7}[-\\s]?\\d{1,6}[-\\s]?[\\dX])</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Optional (greedy).<br/>
+                ○ Match a character in the set [Ii].<br/>
+                ○ Match a character in the set [Ss].<br/>
+                ○ Match a character in the set [Bb].<br/>
+                ○ Match a character in the set [Nn].<br/>
+                ○ Match a character in the set [-\s] atomically, optionally.<br/>
+                ○ Match '1'.<br/>
+                ○ Match '0' greedily, optionally.<br/>
+                ○ Match a character in the set [-:\s] greedily, optionally.<br/>
+            ○ "isbn" capture group.<br/>
+                ○ Match a Unicode digit greedily at least 1 and at most 5 times.<br/>
+                ○ Match a character in the set [-\s] greedily, optionally.<br/>
+                ○ Match a Unicode digit greedily at least 1 and at most 7 times.<br/>
+                ○ Match a character in the set [-\s] greedily, optionally.<br/>
+                ○ Match a Unicode digit greedily at least 1 and at most 6 times.<br/>
+                ○ Match a character in the set [-\s] greedily, optionally.<br/>
+                ○ Match a character in the set [Xx\d].<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.ISBNExtractor.NormalizationPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[-\\s]</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [-\s].<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.ISBNExtractor.ExtractFromFilename(System.String)">
+            <summary>
+            Extracts an ISBN from a filename.
+            </summary>
+            <param name="filename">The filename to extract from.</param>
+            <returns>The extracted ISBN or null if not found.</returns>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.ISBNExtractor.NormalizeISBN(System.String)">
+            <summary>
+            Normalizes an ISBN by removing hyphens and spaces.
+            </summary>
+            <param name="isbn">The ISBN to normalize.</param>
+            <returns>The normalized ISBN.</returns>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.ISBNExtractor.ValidateISBN13(System.String)">
+            <summary>
+            Validates an ISBN-13 using the checksum algorithm.
+            </summary>
+            <param name="isbn">The ISBN-13 to validate.</param>
+            <returns>True if valid, false otherwise.</returns>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.ISBNExtractor.ValidateISBN10(System.String)">
+            <summary>
+            Validates an ISBN-10 using the modulo 11 algorithm.
+            </summary>
+            <param name="isbn">The ISBN-10 to validate.</param>
+            <returns>True if valid, false otherwise.</returns>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.ISBNExtractor.ConvertISBN10ToISBN13(System.String)">
+            <summary>
+            Converts an ISBN-10 to ISBN-13.
+            </summary>
+            <param name="isbn10">The ISBN-10 to convert.</param>
+            <returns>The ISBN-13 or null if invalid.</returns>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Utils.MetadataCache">
+            <summary>
+            Utility class for caching metadata API responses.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.MetadataCache.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.BookMetadata.Utils.MetadataCache"/> class.
+            </summary>
+            <param name="expirationHours">The cache expiration in hours.</param>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.MetadataCache.Get``1(System.String)">
+            <summary>
+            Gets a value from the cache.
+            </summary>
+            <typeparam name="T">The type of the cached value.</typeparam>
+            <param name="key">The cache key.</param>
+            <returns>The cached value or default if not found.</returns>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.MetadataCache.Set``1(System.String,``0,System.Nullable{System.TimeSpan})">
+            <summary>
+            Sets a value in the cache.
+            </summary>
+            <typeparam name="T">The type of the value to cache.</typeparam>
+            <param name="key">The cache key.</param>
+            <param name="value">The value to cache.</param>
+            <param name="expiration">Optional expiration time.</param>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.MetadataCache.GenerateKey(System.String,System.String)">
+            <summary>
+            Generates a cache key for a provider and identifier.
+            </summary>
+            <param name="provider">The provider name.</param>
+            <param name="identifier">The identifier.</param>
+            <returns>The cache key.</returns>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.MetadataCache.Remove(System.String)">
+            <summary>
+            Removes a value from the cache.
+            </summary>
+            <param name="key">The cache key.</param>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.MetadataCache.Clear">
+            <summary>
+            Clears all cached values.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.MetadataCache.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.MetadataCache.Dispose(System.Boolean)">
+            <summary>
+            Disposes the cache.
+            </summary>
+            <param name="disposing">Whether to dispose managed resources.</param>
+        </member>
+        <member name="T:Jellyfin.Plugin.BookMetadata.Utils.RateLimiter">
+            <summary>
+            Token bucket rate limiter for API requests.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.RateLimiter.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.BookMetadata.Utils.RateLimiter"/> class.
+            </summary>
+            <param name="requestsPerMinute">The maximum requests per minute.</param>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.RateLimiter.WaitAsync(System.Threading.CancellationToken)">
+            <summary>
+            Waits until a request can be made within the rate limit.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A task representing the wait operation.</returns>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.RateLimiter.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Jellyfin.Plugin.BookMetadata.Utils.RateLimiter.Dispose(System.Boolean)">
+            <summary>
+            Disposes the rate limiter.
+            </summary>
+            <param name="disposing">Whether to dispose managed resources.</param>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SpecialCharsPattern_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the SpecialCharsPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.SpecialCharsPattern_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SpecialCharsPattern_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SpecialCharsPattern_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SpecialCharsPattern_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SpecialCharsPattern_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SpecialCharsPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SpecialCharsPattern_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Isbn13Pattern_1">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the Isbn13Pattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Isbn13Pattern_1.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Isbn13Pattern_1.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Isbn13Pattern_1.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Isbn13Pattern_1.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Isbn13Pattern_1.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Isbn13Pattern_1.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Isbn13Pattern_1.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Isbn13Pattern_1.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Isbn10Pattern_2">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the Isbn10Pattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Isbn10Pattern_2.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Isbn10Pattern_2.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Isbn10Pattern_2.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Isbn10Pattern_2.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Isbn10Pattern_2.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Isbn10Pattern_2.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Isbn10Pattern_2.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Isbn10Pattern_2.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.NormalizationPattern_3">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the NormalizationPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.NormalizationPattern_3.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NormalizationPattern_3.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.NormalizationPattern_3.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NormalizationPattern_3.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.NormalizationPattern_3.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NormalizationPattern_3.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NormalizationPattern_3.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_2C6A4C392119C799A1B2E2A347E20C73E6DF9162184EC31A0353B8F866791E16(System.ReadOnlySpan{System.Char})">
+            <summary>Finds the next index of any character that matches a character in the set [-\s].</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_4F777F73E7E425F08028CF8DA43CF8D1697B56778D2147C93B552ED664523A53(System.ReadOnlySpan{System.Char})">
+            <summary>Finds the next index of any character that matches a character in the set [^\w\s].</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_91646B6EA80FE804F00EDCCAE8E24823A0970255CE9EC02D28FEBE77E7EB590F(System.ReadOnlySpan{System.Char})">
+            <summary>Finds the next index of any character that matches a character in the set [Ii\d].</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPop(System.Int32[],System.Int32@,System.Int32@,System.Int32@)">
+            <summary>Pops 2 values from the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32)">
+            <summary>Pushes 2 values onto the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32,System.Int32)">
+            <summary>Pushes 3 values onto the backtracking stack.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_ascii_3E00000100FF03FEFFFF87FEFFFF07">
+            <summary>Supports searching for characters in or not in "\t\n\v\f\r 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_ascii_FFC1FFFFFEDFFFFFFFFFFFFFFFFFFFFF">
+            <summary>Supports searching for characters in or not in "\0\u0001\u0002\u0003\u0004\u0005\u0006\a\b\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f!\"#$%&amp;'()*+,./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u007f".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_ascii_FFFFFFFFFFFF00FCFFFDFFFFFFFDFFFF">
+            <summary>Supports searching for characters in or not in "\0\u0001\u0002\u0003\u0004\u0005\u0006\a\b\t\n\v\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&amp;'()*+,-./:;&lt;=&gt;?@ABCDEFGHJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghjklmnopqrstuvwxyz{|}~\u007f".</summary>
+        </member>
+    </members>
+</doc>

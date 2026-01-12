@@ -1,0 +1,14 @@
+C:\Users\wmyli\Jellyfin-Book-Plugin\Jellyfin.Plugin.BookMetadata\obj\Release\net9.0\Jellyfin.Plugin.BookMetadata.csproj.AssemblyReference.cache
+C:\Users\wmyli\Jellyfin-Book-Plugin\Jellyfin.Plugin.BookMetadata\obj\Release\net9.0\Jellyfin.Plugin.BookMetadata.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\wmyli\Jellyfin-Book-Plugin\Jellyfin.Plugin.BookMetadata\obj\Release\net9.0\Jellyfin.Plugin.BookMetadata.AssemblyInfoInputs.cache
+C:\Users\wmyli\Jellyfin-Book-Plugin\Jellyfin.Plugin.BookMetadata\obj\Release\net9.0\Jellyfin.Plugin.BookMetadata.AssemblyInfo.cs
+C:\Users\wmyli\Jellyfin-Book-Plugin\Jellyfin.Plugin.BookMetadata\obj\Release\net9.0\Jellyfin.Plugin.BookMetadata.csproj.CoreCompileInputs.cache
+C:\Users\wmyli\Jellyfin-Book-Plugin\Jellyfin.Plugin.BookMetadata\bin\Release\net9.0\Jellyfin.Plugin.BookMetadata.deps.json
+C:\Users\wmyli\Jellyfin-Book-Plugin\Jellyfin.Plugin.BookMetadata\bin\Release\net9.0\Jellyfin.Plugin.BookMetadata.dll
+C:\Users\wmyli\Jellyfin-Book-Plugin\Jellyfin.Plugin.BookMetadata\bin\Release\net9.0\Jellyfin.Plugin.BookMetadata.pdb
+C:\Users\wmyli\Jellyfin-Book-Plugin\Jellyfin.Plugin.BookMetadata\bin\Release\net9.0\Jellyfin.Plugin.BookMetadata.xml
+C:\Users\wmyli\Jellyfin-Book-Plugin\Jellyfin.Plugin.BookMetadata\obj\Release\net9.0\Jellyfin.Plugin.BookMetadata.dll
+C:\Users\wmyli\Jellyfin-Book-Plugin\Jellyfin.Plugin.BookMetadata\obj\Release\net9.0\refint\Jellyfin.Plugin.BookMetadata.dll
+C:\Users\wmyli\Jellyfin-Book-Plugin\Jellyfin.Plugin.BookMetadata\obj\Release\net9.0\Jellyfin.Plugin.BookMetadata.xml
+C:\Users\wmyli\Jellyfin-Book-Plugin\Jellyfin.Plugin.BookMetadata\obj\Release\net9.0\Jellyfin.Plugin.BookMetadata.pdb
+C:\Users\wmyli\Jellyfin-Book-Plugin\Jellyfin.Plugin.BookMetadata\obj\Release\net9.0\ref\Jellyfin.Plugin.BookMetadata.dll

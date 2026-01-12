@@ -1,0 +1,27 @@
+---
+version: "1.0.0.0"
+targetAbi: "10.9.0.0"
+framework: "net9.0"
+owner: "wmyli"
+name: "Book Metadata"
+overview: "Automatic book and audiobook metadata fetching from Google Books and Open Library"
+description: >
+  A comprehensive metadata provider for books and audiobooks in Jellyfin.
+  Fetches metadata from Google Books API and Open Library API, with support for:
+  - ISBN extraction from filenames
+  - Title and author fuzzy matching
+  - Embedded metadata from EPUB, PDF, and audiobook files
+  - Cover image downloads
+  - Configurable provider priorities and rate limiting
+category: "Metadata"
+guid: "2A8F6C7D-3B9E-4F1A-8D5C-6E2B4A7F9C3D"
+changelog: >
+  ## v1.0.0
+  - Initial release
+  - Google Books API integration
+  - Open Library API integration
+  - EPUB, PDF, and audiobook metadata extraction
+  - ISBN extraction and fuzzy matching
+  - Cover image support
+artifacts:
+  - "Jellyfin.Plugin.BookMetadata.dll"

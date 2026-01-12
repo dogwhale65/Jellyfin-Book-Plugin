@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Book Metadata</title>
+</head>
+<body>
+    <div id="BookMetadataConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button,emby-checkbox,emby-select">
+        <div data-role="content">
+            <div class="content-primary">
+                <form id="BookMetadataConfigForm">
+                    <div class="verticalSection">
+                        <h2 class="sectionTitle">Metadata Sources</h2>
+                        <div class="checkboxContainer checkboxContainer-withDescription">
+                            <label>
+                                <input type="checkbox" is="emby-checkbox" id="EnableGoogleBooks" />
+                                <span>Enable Google Books</span>
+                            </label>
+                            <div class="fieldDescription">Fetch metadata from Google Books API</div>
+                        </div>
+                        <div class="inputContainer">
+                            <label class="inputLabel inputLabelUnfocused" for="GoogleBooksPriority">Google Books Priority (1 = highest)</label>
+                            <input is="emby-input" type="number" id="GoogleBooksPriority" min="1" max="10" />
+                        </div>
+                        <div class="inputContainer">
+                            <label class="inputLabel inputLabelUnfocused" for="GoogleBooksRateLimit">Google Books Rate Limit (requests/minute)</label>
+                            <input is="emby-input" type="number" id="GoogleBooksRateLimit" min="1" max="100" />
+                        </div>
+                        <br />
+                        <div class="checkboxContainer checkboxContainer-withDescription">
+                            <label>
+                                <input type="checkbox" is="emby-checkbox" id="EnableOpenLibrary" />
+                                <span>Enable Open Library</span>
+                            </label>
+                            <div class="fieldDescription">Fetch metadata from Open Library API</div>
+                        </div>
+                        <div class="inputContainer">
+                            <label class="inputLabel inputLabelUnfocused" for="OpenLibraryPriority">Open Library Priority (1 = highest)</label>
+                            <input is="emby-input" type="number" id="OpenLibraryPriority" min="1" max="10" />
+                        </div>
+                        <div class="inputContainer">
+                            <label class="inputLabel inputLabelUnfocused" for="OpenLibraryRateLimit">Open Library Rate Limit (requests/minute)</label>
+                            <input is="emby-input" type="number" id="OpenLibraryRateLimit" min="1" max="200" />
+                        </div>
+                    </div>
+
+                    <div class="verticalSection">
+                        <h2 class="sectionTitle">Identification Methods</h2>
+                        <div class="checkboxContainer checkboxContainer-withDescription">
+                            <label>
+                                <input type="checkbox" is="emby-checkbox" id="EnableISBNExtraction" />
+                                <span>Enable ISBN Extraction</span>
+                            </label>
+                            <div class="fieldDescription">Extract ISBN from filenames for accurate matching</div>
+                        </div>
+                        <div class="checkboxContainer checkboxContainer-withDescription">
+                            <label>
+                                <input type="checkbox" is="emby-checkbox" id="EnableFuzzyMatching" />
+                                <span>Enable Fuzzy Matching</span>
+                            </label>
+                            <div class="fieldDescription">Match books by title and author with tolerance for variations</div>
+                        </div>
+                        <div class="inputContainer">
+                            <label class="inputLabel inputLabelUnfocused" for="FuzzyMatchThreshold">Fuzzy Match Threshold (0-100)</label>
+                            <input is="emby-input" type="number" id="FuzzyMatchThreshold" min="0" max="100" />
+                            <div class="fieldDescription">Higher = more strict matching (recommended: 85)</div>
+                        </div>
+                        <div class="checkboxContainer checkboxContainer-withDescription">
+                            <label>
+                                <input type="checkbox" is="emby-checkbox" id="EnableEmbeddedMetadata" />
+                                <span>Enable Embedded Metadata</span>
+                            </label>
+                            <div class="fieldDescription">Read metadata from EPUB, PDF, and audiobook files</div>
+                        </div>
+                    </div>
+
+                    <div class="verticalSection">
+                        <h2 class="sectionTitle">Caching</h2>
+                        <div class="inputContainer">
+                            <label class="inputLabel inputLabelUnfocused" for="CacheDuration">Cache Duration (hours)</label>
+                            <input is="emby-input" type="number" id="CacheDuration" min="1" max="720" />
+                            <div class="fieldDescription">How long to cache API responses (recommended: 24 hours)</div>
+                        </div>
+                    </div>
+
+                    <div class="verticalSection">
+                        <h2 class="sectionTitle">Advanced</h2>
+                        <div class="checkboxContainer checkboxContainer-withDescription">
+                            <label>
+                                <input type="checkbox" is="emby-checkbox" id="EnableDebugLogging" />
+                                <span>Enable Debug Logging</span>
+                            </label>
+                            <div class="fieldDescription">Log detailed information for troubleshooting</div>
+                        </div>
+                        <div class="selectContainer">
+                            <label class="selectLabel" for="PreferredLanguage">Preferred Language</label>
+                            <select is="emby-select" id="PreferredLanguage" name="PreferredLanguage">
+                                <option value="en">English</option>
+                                <option value="es">Spanish</option>
+                                <option value="fr">French</option>
+                                <option value="de">German</option>
+                                <option value="it">Italian</option>
+                                <option value="pt">Portuguese</option>
+                                <option value="ja">Japanese</option>
+                                <option value="zh">Chinese</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button is="emby-button" type="submit" class="raised button-submit block">
+                            <span>Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var BookMetadataConfig = {
+            pluginUniqueId: '2A8F6C7D-3B9E-4F1A-8D5C-6E2B4A7F9C3D'
+        };
+
+        document.getElementById('BookMetadataConfigPage').addEventListener('pageshow', function () {
+            Dashboard.showLoadingMsg();
+            ApiClient.getPluginConfiguration(BookMetadataConfig.pluginUniqueId).then(function (config) {
+                document.getElementById('EnableGoogleBooks').checked = config.EnableGoogleBooks;
+                document.getElementById('GoogleBooksPriority').value = config.GoogleBooksPriority;
+                document.getElementById('GoogleBooksRateLimit').value = config.GoogleBooksRateLimit;
+                document.getElementById('EnableOpenLibrary').checked = config.EnableOpenLibrary;
+                document.getElementById('OpenLibraryPriority').value = config.OpenLibraryPriority;
+                document.getElementById('OpenLibraryRateLimit').value = config.OpenLibraryRateLimit;
+                document.getElementById('EnableISBNExtraction').checked = config.EnableISBNExtraction;
+                document.getElementById('EnableFuzzyMatching').checked = config.EnableFuzzyMatching;
+                document.getElementById('FuzzyMatchThreshold').value = config.FuzzyMatchThreshold;
+                document.getElementById('EnableEmbeddedMetadata').checked = config.EnableEmbeddedMetadata;
+                document.getElementById('CacheDuration').value = config.CacheDuration;
+                document.getElementById('EnableDebugLogging').checked = config.EnableDebugLogging;
+                document.getElementById('PreferredLanguage').value = config.PreferredLanguage;
+                Dashboard.hideLoadingMsg();
+            });
+        });
+
+        document.getElementById('BookMetadataConfigForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            Dashboard.showLoadingMsg();
+            ApiClient.getPluginConfiguration(BookMetadataConfig.pluginUniqueId).then(function (config) {
+                config.EnableGoogleBooks = document.getElementById('EnableGoogleBooks').checked;
+                config.GoogleBooksPriority = parseInt(document.getElementById('GoogleBooksPriority').value);
+                config.GoogleBooksRateLimit = parseInt(document.getElementById('GoogleBooksRateLimit').value);
+                config.EnableOpenLibrary = document.getElementById('EnableOpenLibrary').checked;
+                config.OpenLibraryPriority = parseInt(document.getElementById('OpenLibraryPriority').value);
+                config.OpenLibraryRateLimit = parseInt(document.getElementById('OpenLibraryRateLimit').value);
+                config.EnableISBNExtraction = document.getElementById('EnableISBNExtraction').checked;
+                config.EnableFuzzyMatching = document.getElementById('EnableFuzzyMatching').checked;
+                config.FuzzyMatchThreshold = parseInt(document.getElementById('FuzzyMatchThreshold').value);
+                config.EnableEmbeddedMetadata = document.getElementById('EnableEmbeddedMetadata').checked;
+                config.CacheDuration = parseInt(document.getElementById('CacheDuration').value);
+                config.EnableDebugLogging = document.getElementById('EnableDebugLogging').checked;
+                config.PreferredLanguage = document.getElementById('PreferredLanguage').value;
+
+                ApiClient.updatePluginConfiguration(BookMetadataConfig.pluginUniqueId, config).then(function (result) {
+                    Dashboard.processPluginConfigurationUpdateResult(result);
+                });
+            });
+            return false;
+        });
+    </script>
+</body>
+</html>
