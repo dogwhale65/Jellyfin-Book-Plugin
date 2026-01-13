@@ -11,7 +11,7 @@
         "version": "1.0.0.0",
         "changelog": "Initial release with Google Books API integration, Open Library API integration, EPUB/PDF/audiobook metadata extraction, ISBN extraction and fuzzy matching, and cover image support",
         "targetAbi": "10.10.0.0",
-        "sourceUrl": "https://github.com/dogwhale65/Jellyfin-Book-Plugin/releases/download/beta/Jellyfin.Plugin.BookMetadata_1.0.0.zip",
+        "sourceUrl": "https://github.com/dogwhale65/Jellyfin-Book-Plugin/releases/download/beta/Jellyfin.Plugin.BookMetadata_1.0.0.1.zip",
         "checksum": "3e17c775461b29ab1496e7036fc567e3",
         "timestamp": "2026-01-12T00:00:00Z"
       }
