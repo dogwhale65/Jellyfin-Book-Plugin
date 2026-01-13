@@ -5,7 +5,9 @@
       "Bash(find:*)",
       "Bash(ls:*)",
       "Bash(tar:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(zip:*)",
+      "Bash(powershell -Command:*)"
     ]
   }
 }

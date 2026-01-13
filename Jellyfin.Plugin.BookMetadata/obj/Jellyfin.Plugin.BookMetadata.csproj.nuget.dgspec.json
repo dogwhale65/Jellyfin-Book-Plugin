@@ -1,30 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wmyli\\Jellyfin-Book-Plugin\\Jellyfin.Plugin.BookMetadata\\Jellyfin.Plugin.BookMetadata.csproj": {}
+    "F:\\Jellyfin-Book-Plugin\\Jellyfin.Plugin.BookMetadata\\Jellyfin.Plugin.BookMetadata.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wmyli\\Jellyfin-Book-Plugin\\Jellyfin.Plugin.BookMetadata\\Jellyfin.Plugin.BookMetadata.csproj": {
+    "F:\\Jellyfin-Book-Plugin\\Jellyfin.Plugin.BookMetadata\\Jellyfin.Plugin.BookMetadata.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wmyli\\Jellyfin-Book-Plugin\\Jellyfin.Plugin.BookMetadata\\Jellyfin.Plugin.BookMetadata.csproj",
+        "projectUniqueName": "F:\\Jellyfin-Book-Plugin\\Jellyfin.Plugin.BookMetadata\\Jellyfin.Plugin.BookMetadata.csproj",
         "projectName": "Jellyfin.Plugin.BookMetadata",
-        "projectPath": "C:\\Users\\wmyli\\Jellyfin-Book-Plugin\\Jellyfin.Plugin.BookMetadata\\Jellyfin.Plugin.BookMetadata.csproj",
+        "projectPath": "F:\\Jellyfin-Book-Plugin\\Jellyfin.Plugin.BookMetadata\\Jellyfin.Plugin.BookMetadata.csproj",
         "packagesPath": "C:\\Users\\wmyli\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wmyli\\Jellyfin-Book-Plugin\\Jellyfin.Plugin.BookMetadata\\obj\\",
+        "outputPath": "F:\\Jellyfin-Book-Plugin\\Jellyfin.Plugin.BookMetadata\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\wmyli\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net8.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -37,12 +37,11 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "10.0.100"
+        }
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "FuzzySharp": {
               "target": "Package",
@@ -51,11 +50,11 @@
             "Jellyfin.Controller": {
               "include": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "target": "Package",
-              "version": "[10.*-*, )"
+              "version": "[10.10.*, )"
             },
             "Microsoft.Extensions.Http": {
               "target": "Package",
-              "version": "[10.0.1, )"
+              "version": "[8.0.1, )"
             },
             "TagLibSharp": {
               "target": "Package",
@@ -81,26 +80,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[9.0.11, 9.0.11]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.11, 9.0.11]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[9.0.11, 9.0.11]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.415/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
